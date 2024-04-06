@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Изменение профиля</h1>
+
+  {% if current_user.is_authenticated %}
+    <form method="POST" action="">
+      <div class="form-group">
+        <label for="username">Имя пользователя:</label>
+        <input type="text" class="form-control" id="username" name="username" value="{{ current_user.username }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Новый пароль:</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+      </div>
+
+      <div class="form-group">
+        <label for="confirm_password">Подтвердите новый пароль:</label>
+        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+    </form>
+
+    <a href="/logout" class="btn btn-danger mt-2">Выйти</a>
+  {% else %}
+    <p>Для изменения профиля необходимо войти в систему.</p>
+  {% endif %}
+{% endblock %}
